@@ -11,7 +11,7 @@
 
         <script>
             if (navigator.serviceWorker) {
-                navigator.serviceWorker.register("/build/sw.js", { scope: "/build/", });
+                navigator.serviceWorker.register("./build/sw.js", { scope: "./build/", });
                 navigator.serviceWorker.addEventListener("message", event => {
                     var msg = event.data.msg;
                     switch (msg.name) {
@@ -758,7 +758,7 @@
             }
 
             window.emuScriptProgress = 0;
-            ajaxScript("/build/emu.js", function (progress, text) {
+            ajaxScript("./build/emu.js", function (progress, text) {
                 window.emuScriptProgress = progress;
             });
 
@@ -766,7 +766,7 @@
 
             
         </script>
-        <script src="/build/app.js"></script>
+        <script src="./build/app.js"></script>
     </head>
     <body>
         <style>
@@ -920,7 +920,6 @@
         <div style="display: none;" class="ui">
             <div class="ui-border-1">
                 <!-- <div class="ui-border-2">
-                    <img src="/build/logo.png" style="height: 50px; padding-bottom: 6px; padding-right: 90px;"/>
                     <section class="load-rom-section">
                         <h2>Load a Gameboy Advance ROM</h2>
                         <div class="gap"></div>
