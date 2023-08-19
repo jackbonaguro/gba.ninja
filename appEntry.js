@@ -15,8 +15,10 @@ window.init = function () {
     console.log("realWidth", realWidth);
     const isDesktop = realWidth >= 370;
     if (isDesktop) {
+        console.log('deleting mobile');
         document.querySelector(".mobile").remove();
     } else {
+        console.log('deleting desktop');
         document.querySelector(".desktop").remove();
     }
     if (!isDesktop) {
