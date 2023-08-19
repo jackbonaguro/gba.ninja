@@ -4,7 +4,7 @@
         
         <meta charset="utf-8"/>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.2"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="title" content="gba.ninja - Gameboy Advance emulator in the browser"/>
         <meta name="description" content="Run Gameboy Advance games in a web browser. Based on the VisualBoyAdvance-M emulator."/>
         <title>gba.ninja</title>
@@ -28,7 +28,7 @@
                 height: 100%;
                 margin: 0px;
                 font-family: sans-serif;
-                background-color: #f3ddff;
+                background-color: black;
             }
             canvas {
                 right: 0px;
@@ -901,72 +901,79 @@
                 width: 200px;
             }
         </style>
-        <div class="pixels" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0;"></div>
-        <div style="display: none;" class="ui">
+        <div class="mobile" style="display: block; flex-direction: column;">
+          <div style="display: none;" class="ui">
             <div class="ui-border-1">
-                <!-- <div class="ui-border-2">
-                    <section class="load-rom-section">
-                        <h2>Load a Gameboy Advance ROM</h2>
-                        <div class="gap"></div>
-                        <label class="btn" for="load-rom-from-file">From File</label>
-                        <div class="gap"></div>
-                    </section>
-                    <section class="paused-section" style="display: none;">
-                        <h2>Paused</h2>
-                        <p style="padding-top: 8px;">
-                            Press <span class="unpause-key-prompt"></span> to resume.
-                        </p>
-                    </section>
-                    <section class="savegames-section">
-                        <h2>Saves</h2>
-                        <div class="gap"></div>
-                        <div class="saves-list"></div>
-                        <div class="gap"></div>
-                        <label class="btn" for="import-save-file">Import Save File</label>
-                        <form>
-                            <input id="import-save-file" type="file" onchange="vbaSaves.onFileImportInputChanged(event, window.vbaUI.reset.bind(vbaUI));"/>
-                        </form>
-                    </section>
-                    <section>
-                        <h2>Keyboard Bindings</h2>
-                        <div class="gap"></div>
-                        <div class="keyboard-bindings"></div>
-                        <div class="gap"></div>
-                        <button class="btn reset-bindings-button" onclick="window.vbaUI.resetBindings();">Reset Bindings</button>
-                    </section>
-                    <div style="position: absolute; right: 10px; bottom: 10px;">
-                        <a class="report-bug-button" target="_blank" href="https://github.com/simon-paris/gba.ninja/blob/master/embed.md">embed gba.ninja</a>
-                        &nbsp;
-                        <a class="report-bug-button" target="_blank" href="https://github.com/simon-paris/gba.ninja/issues">report a bug</a>
-                    </div>
-                </div> -->
             </div>
+          </div>
+          <div class="pixels" style="position: fixed; top: 0; left: 0; width: 100vw;"></div>
+          <div class="controls">
+            <!-- <img src="./photo_2023-08-18_22-19-13.png" style="width: 100vw; position: fixed; top: 0; left: 0;"/> -->
+            <div
+              style="position: absolute; top: 465px; left: 65px; width: 50px; height: 50px; background-color: lightblue;
+              display: flex; justify-content: center; align-items: center;"
+            ></div>
+            <div class="left-button"
+              style="position: absolute; top: 465px; left: 16px; width: 50px; height: 50px; background-color: lightblue;
+              display: flex; justify-content: center; align-items: center;"
+            ><h1>◀</h1></div>
+            <div class="right-button"
+              style="position: absolute; top: 465px; left: 114px; width: 50px; height: 50px; background-color: lightblue;
+              display: flex; justify-content: center; align-items: center;"
+            ><h1>▶</h1></div>
+            <div class="up-button"
+              style="position: absolute; top: 416px; left: 65px; width: 50px; height: 50px; background-color: lightblue;
+              display: flex; justify-content: center; align-items: center;"
+            ><h1>▲</h1></div>
+            <div class="down-button"
+              style="position: absolute; top: 514px; left: 65px; width: 50px; height: 50px; background-color: lightblue;
+              display: flex; justify-content: center; align-items: center;"
+            ><h1>▼</h1></div>
+            <div class="b-button"
+              style="position: absolute; top: 465px; left: 200px; width: 50px; height: 50px; background-color: lightblue; border-radius: 1000px;
+              display: flex; justify-content: center; align-items: center;"
+            >
+              <h1>B</h1>
+            </div>
+            <div class="a-button"
+              style="position: absolute; top: 465px; left: 288px; width: 50px; height: 50px; background-color: lightblue; border-radius: 1000px;
+              display: flex; justify-content: center; align-items: center;"
+            >
+              <h1>A</h1>
+            </div>
+          </div>
+        </div>
+        <div class="desktop" style="display: block; width: 100vw; height: 100vh;">
+          <div class="pixels" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0;"></div>
+          <div style="display: none;" class="ui">
+              <div class="ui-border-1">
+              </div>
+          </div>
+          </div>
         </div>
         <div class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-body">
-                <h2 class="modal-title">Title</h2>
-                <div class="gap"></div>
-                <p class="modal-text">Text</p>
-                <div class="gap"></div>
-                <div class="modal-progress"></div>
-                <input class="modal-input"></input>
-                <div class="modal-buttons">
-                    <div class="btn modal-button-left">Left</div>
-                    <div class="btn modal-button-right">Right</div>
-                </div>
-            </div>
+          <div class="modal-background"></div>
+          <div class="modal-body">
+              <h2 class="modal-title">Title</h2>
+              <div class="gap"></div>
+              <p class="modal-text">Text</p>
+              <div class="gap"></div>
+              <div class="modal-progress"></div>
+              <input class="modal-input"></input>
+              <div class="modal-buttons">
+                  <div class="btn modal-button-left">Left</div>
+                  <div class="btn modal-button-right">Right</div>
+              </div>
+          </div>
         </div>
         <div class="toast">
-            
-        </div>
         <div class="perf" style="display: none;">
-            <span class="perf-left">Game</span><span class="perf-right perf-game">-</span><br/>
-            <span class="perf-left">Speed</span><span class="perf-right perf-percentage">-</span><br/>
-            <span class="perf-left">On-Time Renders</span><span class="perf-right perf-render-deadlines">-</span><br/>
-            <span class="perf-left">On-Time Audio Events</span><span class="perf-right perf-audio-deadlines">-</span><br/>
-            <span class="perf-left">Timesteps/Second</span><span class="perf-right perf-timesteps">-</span><br/>
-            <span class="perf-left">Audio Lag</span><span class="perf-right perf-audio-lag">-</span><br/>
+          <span class="perf-left">Game</span><span class="perf-right perf-game">-</span><br/>
+          <span class="perf-left">Speed</span><span class="perf-right perf-percentage">-</span><br/>
+          <span class="perf-left">On-Time Renders</span><span class="perf-right perf-render-deadlines">-</span><br/>
+          <span class="perf-left">On-Time Audio Events</span><span class="perf-right perf-audio-deadlines">-</span><br/>
+          <span class="perf-left">Timesteps/Second</span><span class="perf-right perf-timesteps">-</span><br/>
+          <span class="perf-left">Audio Lag</span><span class="perf-right perf-audio-lag">-</span><br/>
         </div>
     </body>
 </html>

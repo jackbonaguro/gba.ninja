@@ -11,7 +11,19 @@ var isPaused = false;
 
 
 window.init = function () {
-
+    const realWidth = window.innerWidth / window.devicePixelRatio;
+    console.log("realWidth", realWidth);
+    const isDesktop = realWidth >= 370;
+    if (isDesktop) {
+        document.querySelector(".mobile").remove();
+    } else {
+        document.querySelector(".desktop").remove();
+    }
+    if (!isDesktop) {
+        const ratio = 240 / 160;
+        const height = window.innerWidth / ratio;
+        document.querySelector(".pixels").style.height = height + "px";
+    }
     document.querySelector(".pixels").innerHTML = '<canvas width="240" height="160"></canvas>';
 
     window.vbaGraphics = new VBAGraphics(window.gbaninja, document.querySelector("canvas"));
@@ -53,6 +65,7 @@ window.start = function () {
         return;
     }
     
+
     document.querySelector(".pixels").style.display = "block";
     document.querySelector(".ui").style.display = "none";
 

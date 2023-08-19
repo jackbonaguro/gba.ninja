@@ -103,6 +103,28 @@
 
             return false;
         }.bind(this));
+
+        // Mobile gamepad
+
+        const gamepadMapping = {
+            'left-button': 'KEY_LEFT',
+            'right-button': 'KEY_RIGHT',
+            'up-button': 'KEY_UP',
+            'down-button': 'KEY_DOWN',
+            'a-button': 'KEY_BUTTON_A',
+            'b-button': 'KEY_BUTTON_B',
+        };
+
+        for (const buttonClass in gamepadMapping) {
+            const bindingName = gamepadMapping[buttonClass];
+            const button = document.querySelector(`.${buttonClass}`);
+            button.addEventListener('touchstart', () => {
+                this.downCodes[this.bindings[bindingName].codes[0]] = 1;
+            });
+            button.addEventListener('touchend', () => {
+                this.downCodes[this.bindings[bindingName].codes[0]] = 0;
+            });
+        }
         
         this.bindings = null;
         this.loadBindings();
