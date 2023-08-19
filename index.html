@@ -428,28 +428,6 @@
                 // }
             };
 
-            window.loadRomFromFile = function (e) {
-                var binaryFile = e.currentTarget.files[0];
-                var filename = binaryFile.name;
-                e.currentTarget.form.reset();
-                if (!binaryFile) {
-                    return;
-                }
-
-                var modalOpts = modal(filename, {
-                    title: "Loading File",
-                    leftButtonFn: null,
-                });
-
-                var fr = new FileReader();
-                fr.readAsArrayBuffer(binaryFile);
-                fr.onload = function () {
-                    modalOpts.hideModal();
-                    var _romBuffer8 = new Uint8Array(fr.result);
-                    loadRomFromBuffer(_romBuffer8, binaryFile.name);
-                };
-            };
-
             window.loadRomFromFile = function( filename ) {
                 var xhr = new XMLHttpRequest();
 
@@ -543,7 +521,14 @@
                     triggerReady("emu");
                 },
             };
-            
+
+            if (window.emuLoaded) {
+              triggerReady("emu");
+            } else {
+              window.addEventListener('emuLoaded', function (e) {
+                triggerReady("emu");
+              });
+            }
             
             document.addEventListener("DOMContentLoaded", function () {
                 triggerReady("document");
@@ -925,9 +910,6 @@
                         <div class="gap"></div>
                         <label class="btn" for="load-rom-from-file">From File</label>
                         <div class="gap"></div>
-                        <form>
-                            <input id="load-rom-from-file" type="file" onchange="window.loadRomFromFile(event);"/>
-                        </form>
                     </section>
                     <section class="paused-section" style="display: none;">
                         <h2>Paused</h2>
