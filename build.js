@@ -70,6 +70,7 @@
         "-s NO_EXIT_RUNTIME=1",
         "-s EXPORTED_RUNTIME_METHODS=['ccall']",
         "-s TOTAL_MEMORY=" + (80 * MB),
+        "--pre-js ./pre.js"
     ].filter(function (v) {return v;}).join(" ");
     
     function fix (file) {
