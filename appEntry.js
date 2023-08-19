@@ -20,7 +20,6 @@ window.init = function () {
     if (!res) {
         window.vbaGraphics = null;
         document.querySelector(".pixels").innerHTML = "<p style='margin: 20px;'>You need to enable WebGL</p>";
-        gtag("event", "webgl_disabled_at_init_1", {});
         return;
     }
     
@@ -51,7 +50,6 @@ window.start = function () {
     
     if (!window.vbaGraphics) {
         // webgl is disabled
-        gtag("event", "webgl_disabled_at_start_1", {});
         return;
     }
     
@@ -63,10 +61,6 @@ window.start = function () {
     onResize();
 
     VBAInterface.VBA_start();
-
-    gtag("event", "run_rom_1", {
-        event_label: window.vbaSaves.getRomCode() + " " + require("./romCodeToEnglish")(window.vbaSaves.getRomCode()),
-    });
 
     isRunning = true;    
     window.focusCheck();
